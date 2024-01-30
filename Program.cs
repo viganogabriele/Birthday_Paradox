@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace NatiStessoGiorno
 {
@@ -15,6 +16,10 @@ namespace NatiStessoGiorno
             List <double> percentuali = new List <double>();
             int casi;
             int prove = 200;
+            string percorsoFile = "C:\\Users\\gabri\\OneDrive\\Desktop\\Percentuali.txt";
+
+            // Pulizia file
+            IniziaFile(percorsoFile);
 
             for (int i = 0; i <= 366; i++)
             {
@@ -33,6 +38,8 @@ namespace NatiStessoGiorno
             {
                 Console.WriteLine("{0} persone : {1:F2} %", i, percentuali[i]);
             }
+
+            CompilaFile(percorsoFile, percentuali);
             Console.ReadKey();
         }
         static void CompilaLista(Random random, int nPersone, List <Persona> persone)
@@ -57,6 +64,23 @@ namespace NatiStessoGiorno
                 }
             }
             return 0; // Se non trova coppie restituisce 0
+        }
+        static void IniziaFile(string percorsoFile)
+        {
+            if (File.Exists(percorsoFile) == true)
+            {
+                File.Delete(percorsoFile);
+            }
+            File.AppendAllText(percorsoFile,
+            string.Format("Persone\tPercentuali\r\n"));
+        }
+        static void CompilaFile(string percorsoFile, List <double> percentuali)
+        {
+            for (int i = 0; i < percentuali.Count; i++)
+            {
+                File.AppendAllText(percorsoFile,
+                string.Format("{0}\t{1}\r\n", i, percentuali[i]));
+            }
         }
     }
 }
