@@ -21,10 +21,11 @@ namespace NatiStessoGiorno
             // Pulizia file
             IniziaFile(percorsoFile);
 
+            // Programma
             for (int i = 0; i <= 366; i++)
             {
                 casi = 0;
-                for(int j = 0; j < prove; j++)
+                for(int j = 0; j < prove; j++) // Esegui il numero specificato di prove per il numero di persone attuale
                 {
                     persone.Clear();
                     CompilaLista(random, i, persone);
@@ -39,6 +40,7 @@ namespace NatiStessoGiorno
                 Console.WriteLine("{0} persone : {1:F2} %", i, percentuali[i]);
             }
 
+            // Compilazione file
             CompilaFile(percorsoFile, percentuali);
             Console.ReadKey();
         }
