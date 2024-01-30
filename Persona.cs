@@ -15,12 +15,8 @@ namespace NatiStessoGiorno
         public void GeneraDataNascita(Random random) 
         {
             mese = random.Next(1, 13);
-            giorno = random.Next(1, 32);
-            anno = random.Next(0, 2024);
-            if(giorno <= DateTime.DaysInMonth(anno, mese))
-            {
-                giorno = random.Next(1, 32);
-            }
+            anno = random.Next(1, 2024);
+            giorno = random.Next(1, DateTime.DaysInMonth(anno, mese) + 1);
         }
     }
 }
