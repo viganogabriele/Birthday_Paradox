@@ -14,7 +14,7 @@ namespace NatiStessoGiorno
             List <Persona> persone = new List <Persona>();
             List <double> percentuali = new List <double>();
             int casi;
-            int prove = 10;
+            int prove = 200;
 
             for (int i = 0; i <= 366; i++)
             {
@@ -25,9 +25,10 @@ namespace NatiStessoGiorno
                     CompilaLista(random, i, persone);
                     casi += ConfrontaCompleanni(persone);
                 }
-                percentuali.Add((double)casi / prove * 100);
+                percentuali.Add((double)casi / (double)prove * 100);
             }
 
+            // Output a schermo
             for(int i = 0; i < percentuali.Count; i++)
             {
                 Console.WriteLine("{0} persone : {1:F2} %", i, percentuali[i]);
@@ -51,11 +52,11 @@ namespace NatiStessoGiorno
                 {
                     if (persone[i].mese == persone[j].mese && persone[i].giorno == persone[j].giorno)
                     {
-                        return 1;
+                        return 1; // Se trova una coppia restituisce 1
                     }
                 }
             }
-            return 0;
+            return 0; // Se non trova coppie restituisce 0
         }
     }
 }
